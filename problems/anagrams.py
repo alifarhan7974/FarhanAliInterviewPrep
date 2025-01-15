@@ -1,4 +1,20 @@
 from collections import Counter
+from collections import defaultdict
+
+def anagrams_with_deafult_dict(word: str, test_word: str) -> bool:
+  letter_count = defaultdict(int)
+  for letter in word: 
+    letter_count[word] += 1
+
+  for char in test_word:
+     if char not in letter_count: #If char not in word 
+        return False
+     letter_count[char] -= 1 
+     if letter_count[char] < 0:
+        return False
+
+  return list(letter_count.values()) == [0 for i in range(len(letter_count))]
+  
 def anagram_with_counter(word: str, test_word: str) -> bool: 
   return Counter(word) == Counter(test_word)
 
